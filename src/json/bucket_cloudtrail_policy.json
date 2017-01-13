@@ -1,0 +1,30 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AWSCloudTrailAclCheck20131101",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+        ]
+      },
+      "Action": "s3:GetBucketAcl",
+      "Resource": null
+    },
+    {
+      "Sid": "AWSCloudTrailWrite20131101",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+        ]
+      },
+      "Action": "s3:PutObject",
+      "Resource": null,
+      "Condition": {
+        "StringEquals": {
+          "s3:x-amz-acl": "bucket-owner-full-control"
+        }
+      }
+    }
+  ]
+}
