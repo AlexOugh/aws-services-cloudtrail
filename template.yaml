@@ -66,6 +66,7 @@ Resources:
       Runtime: nodejs4.3
       CodeUri: s3://sgas.sam.aws-services-cloudtrail/cloudtrail.zip
       Role: !GetAtt LambdaFunctionIAMRole.Arn
+      Timeout: 300
       Environment:
         Variables:
           TRAIL_NAME: "Default"
