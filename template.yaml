@@ -2,13 +2,13 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: API interfaces and Lambda Function for Cloudtrail interfaces.
 Resources:
-    ApiGatewayApi:
-      Type: AWS::Serverless::Api
-      Properties:
-        DefinitionUri: s3://sgas.sam.aws-services-cloudtrail/swagger.yaml
-        StageName: Prod
-        Variables:
-          LambdaFunctionName: !Ref LambdaFunction
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      DefinitionUri: s3://sgas.sam.aws-services-cloudtrail/swagger.yaml
+      StageName: Prod
+      Variables:
+        LambdaFunctionName: !Ref LambdaFunction
 
   LambdaFunctionIAMRole:
       Type: "AWS::IAM::Role"
