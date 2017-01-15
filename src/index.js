@@ -16,11 +16,14 @@ baseHandler.get = function(params, callback) {
     trailName: trailName
   };
   if (params.region) input['region'] = params.region;
-  if (params.Credentials) input['creds'] = new AWS.Credentials({
-    accessKeyId: params.Credentials.AccessKeyId,
-    secretAccessKey: params.Credentials.SecretAccessKey,
-    sessionToken: params.Credentials.SessionToken
-  });
+  if (params.Credentials) {
+    const creds = JSON.parse(params.Credentials)
+    input['creds'] = new AWS.Credentials({
+      accessKeyId: creds.AccessKeyId,
+      secretAccessKey: creds.SecretAccessKey,
+      sessionToken: creds.SessionToken
+    });
+  }
   console.log(input)
 
   function succeeded(input) { callback(null, {result: true}); }

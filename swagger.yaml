@@ -24,8 +24,6 @@ paths:
               type: "string"
             Access-Control-Allow-Headers:
               type: "string"
-      security:
-      - SSOAuthorizer: []
       x-amazon-apigateway-integration:
         responses:
           default:
@@ -47,6 +45,8 @@ paths:
         required: true
         type: "string"
       responses: {}
+      security:
+      - SSOAuthorizer: []
       x-amazon-apigateway-integration:
         responses:
           default:
