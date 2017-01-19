@@ -1,11 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: API interfaces and Lambda Function for Cloudtrail interfaces.
+
 Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      DefinitionUri: s3://sgas.sam.aws-services-cloudtrail/swagger.yaml
+      DefinitionUri: ./swagger.yaml
       StageName: Prod
       Variables:
         LambdaFunctionName: !Ref LambdaFunction
@@ -64,7 +65,7 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: nodejs4.3
-      CodeUri: s3://sgas.sam.aws-services-cloudtrail/cloudtrail.zip
+      CodeUri: ./src
       Role: !GetAtt LambdaFunctionIAMRole.Arn
       Timeout: 300
       Environment:
@@ -76,5 +77,21 @@ Resources:
         GetResource:
           Type: Api
           Properties:
+            RestApiId: !Ref ApiGatewayApi
             Path: /{proxy+}
             Method: ANY
+
+Outputs:
+  ApiUrl:
+    Description: URL of your API endpoint
+    Value: !Join
+      - ''
+      - - https://
+        - !Ref ApiGatewayApi
+        - '.execute-api.'
+        - !Ref 'AWS::Region'
+        - '.amazonaws.com/Prod'
+
+  LambdaFunction:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt LambdaFunction.Arn

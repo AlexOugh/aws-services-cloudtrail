@@ -3,14 +3,10 @@ phases:
   install:
     commands:
       - npm install time
-      - npm install
       - cd src; npm install; cd ..
-      - node run_zip
-      - aws s3 cp cloudtrail.zip s3://sgas.sam.aws-services-cloudtrail
-      - aws s3 cp swagger.yaml s3://sgas.sam.aws-services-cloudtrail
       - aws cloudformation package
          --template-file template.yaml
-         --s3-bucket sgas.sam.aws-services-cloudtrail
+         --s3-bucket $S3_BUCKET_NAME
          --output-template-file samTemplate.yaml
 artifacts:
   type: zip
