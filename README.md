@@ -6,6 +6,59 @@ API Gateway and Lambda Function to Manage the Cloudtrail Services
 
 ![aws-services][aws-services-image]
 
+## How to Send Requests
+
+The 'Credentials' header doesn't need to be set if the target account is same with the account where this Lambda Function is deployed.
+
+### To check the current status of the services
+```
+const Credentials = {
+  "AccessKeyId": "",
+  "SecretAccessKey": "",
+  "SessionToken": ""
+}
+path: /cloudtrail?region=<<region>>
+method : GET
+"headers": {
+  "Credentials": JSON.stringify(Credentials),
+}
+```
+### To enable the services
+```
+Credentials = {
+  "AccessKeyId": "",
+  "SecretAccessKey": "",
+  "SessionToken": ""
+}
+path: /cloudtrail
+method : POST
+"headers": {
+  "Credentials": JSON.stringify(Credentials),
+}
+data:
+{
+  "region": "<<region>>",
+  "account": "<<target_account_num>>"
+}
+```
+### To disable the services
+```
+Credentials = {
+  "AccessKeyId": "",
+  "SecretAccessKey": "",
+  "SessionToken": ""
+}
+path: /cloudtrail
+method : DELETE
+"headers": {
+  "Credentials": JSON.stringify(Credentials),
+}
+data:
+{
+  "region": "<<region>>"
+}
+```
+
 ## How To Setup a CodePipeline
 
 Please see here, https://github.com/SungardAS/aws-services-federation#how-to-setup-a-codepipeline
