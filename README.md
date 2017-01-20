@@ -10,7 +10,7 @@ API Gateway and Lambda Function to Manage the Cloudtrail Services
 
 Please see here, https://github.com/SungardAS/aws-services-federation#how-to-setup-a-codepipeline
 
-This API interfaces are using Custom Authorizer and currently, we need to hardcode its Lambda Arn and IAM role to invoke in swagger.yaml
+This API interfaces are using Custom Authorizer and currently, we need to hardcode its Lambda Arn and IAM role for Lambda invocation in swagger.yaml
 
   - securityDefinitions - \<\<Custom Authorizer Name\>\> - authorizerCredentials
 
