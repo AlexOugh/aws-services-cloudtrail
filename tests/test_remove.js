@@ -9,13 +9,15 @@ const Credentials = {
   "SessionToken": ""
 };
 const body = {
-  "Credentials": Credentials,
-  "region": "us-east-1"
+  "region": ""
 };
 
 event = {
   "path": "/cloudtrail",
   "httpMethod": "DELETE",
+  "headers": {
+    "Credentials": JSON.stringify(Credentials),
+  },
   "body": JSON.stringify(body)
 }
 

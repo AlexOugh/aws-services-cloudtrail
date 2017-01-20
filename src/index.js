@@ -17,11 +17,10 @@ baseHandler.get = function(params, callback) {
   };
   if (params.region) input['region'] = params.region;
   if (params.Credentials) {
-    const creds = JSON.parse(params.Credentials)
     input['creds'] = new AWS.Credentials({
-      accessKeyId: creds.AccessKeyId,
-      secretAccessKey: creds.SecretAccessKey,
-      sessionToken: creds.SessionToken
+      accessKeyId: params.Credentials.AccessKeyId,
+      secretAccessKey: params.Credentials.SecretAccessKey,
+      sessionToken: params.Credentials.SessionToken
     });
   }
   console.log(input)
@@ -68,7 +67,7 @@ baseHandler.post = function(params, callback) {
   var rootAccount = rootAccounts[params.region];
   console.log('root account = ' + rootAccount);
   if (!rootAccount) {
-    context.fail("cannot enable the service because no root account is found in region " + params.region, null);
+    callback("cannot enable the service because no root account is found in region " + params.region, null);
   }
 
   var bucketName = params.account + bucketNamePostfix + "." + params.region;

@@ -11,14 +11,16 @@ const Credentials = {
   "SessionToken": ""
 };
 const body = {
-  "Credentials": Credentials,
-  "region": "us-east-1",
-  "account": "089476987273"
+  "region": "",
+  "account": ""
 };
 
 event = {
   "path": "/cloudtrail",
   "httpMethod": "POST",
+  "headers": {
+    "Credentials": JSON.stringify(Credentials),
+  },
   "body": JSON.stringify(body)
 }
 

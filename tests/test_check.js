@@ -9,17 +9,16 @@ const Credentials = {
   "SessionToken": ""
 };
 const querystr = {
-  "Credentials": JSON.stringify(Credentials),
-  "region": "us-east-1"
+  "region": ""
 };
-
-// when sending this querystring in urls
-// cloudtrail?region=us-east-1&Credentials=encodeURIComponent(JSON.stringify(Credentials))
 
 event = {
   "path": "/cloudtrail",
   "httpMethod": "GET",
-  "queryStringParameters": querystr,
+  "headers": {
+    "Credentials": JSON.stringify(Credentials),
+  },
+  "queryStringParameters": querystr
 }
 
 var i = require('../src/index.js');
