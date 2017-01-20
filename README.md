@@ -19,7 +19,7 @@ const Credentials = {
 }
 path: /cloudtrail?region=<<region>>
 method : GET
-"headers": {
+headers: {
   "Credentials": JSON.stringify(Credentials),
 }
 ```
@@ -32,7 +32,7 @@ Credentials = {
 }
 path: /cloudtrail
 method : POST
-"headers": {
+headers: {
   "Credentials": JSON.stringify(Credentials),
 }
 data:
@@ -50,7 +50,7 @@ Credentials = {
 }
 path: /cloudtrail
 method : DELETE
-"headers": {
+headers: {
   "Credentials": JSON.stringify(Credentials),
 }
 data:
