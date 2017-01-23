@@ -4,7 +4,6 @@ phases:
     commands:
       - npm install time
       - npm install
-      - cp swagger.yaml.template swagger.yaml
       - ./node_modules/.bin/replace '__aws_region' $AWS_DEFAULT_REGION ./swagger.yaml
       - ./node_modules/.bin/replace '__aws_account' $AWS_ACCOUNt_ID ./swagger.yaml
       - ./node_modules/.bin/replace '__aws_auth_lambda' $AWS_AUTHORIZER_LAMBDA_ARN ./swagger.yaml
