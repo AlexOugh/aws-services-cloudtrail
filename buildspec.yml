@@ -3,11 +3,10 @@ phases:
   install:
     commands:
       - npm install time
-      - npm install
-      - ./node_modules/.bin/replace '__aws_region' $AWS_DEFAULT_REGION ./swagger.yaml
-      - ./node_modules/.bin/replace '__aws_account' $AWS_ACCOUNt_ID ./swagger.yaml
-      - ./node_modules/.bin/replace '__aws_auth_lambda' $AWS_AUTHORIZER_LAMBDA_ARN ./swagger.yaml
-      - ./node_modules/.bin/replace '__aws_auth_role' $AWS_AUTHORIZER_IAM_ROLE_ARN ./swagger.yaml
+      - sed -i 's/__aws_region/$AWS_DEFAULT_REGION/g' swagger.yaml
+      - sed -i 's/__aws_account/$AWS_ACCOUNt_ID/g' swagger.yaml
+      - sed -i 's/__aws_auth_lambda/$AWS_AUTHORIZER_LAMBDA_ARN/g' swagger.yaml
+      - sed -i 's/__aws_auth_role/$AWS_AUTHORIZER_IAM_ROLE_ARN/g' swagger.yaml
       - cd src; npm install; cd ..
       - aws cloudformation package
          --template-file template.yaml
