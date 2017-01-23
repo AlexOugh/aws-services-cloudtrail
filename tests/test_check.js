@@ -18,6 +18,12 @@ event = {
   "headers": {
     "Credentials": JSON.stringify(Credentials),
   },
+  "requestContext": {
+    "authorizer": {
+      "refresh_token": "1234",
+      "principalId": "abcd"
+    }
+  },
   "queryStringParameters": querystr
 }
 

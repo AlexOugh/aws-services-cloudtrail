@@ -11,8 +11,7 @@ const Credentials = {
   "SessionToken": ""
 };
 const body = {
-  "region": "",
-  "account": ""
+  "region": ""
 };
 
 event = {
@@ -20,6 +19,12 @@ event = {
   "httpMethod": "POST",
   "headers": {
     "Credentials": JSON.stringify(Credentials),
+  },
+  "requestContext": {
+    "authorizer": {
+      "refresh_token": "1234",
+      "principalId": "abcd"
+    }
   },
   "body": JSON.stringify(body)
 }
