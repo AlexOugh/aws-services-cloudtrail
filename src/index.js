@@ -23,7 +23,6 @@ baseHandler.get = function(params, callback) {
       sessionToken: params.Credentials.SessionToken
     });
   }
-  console.log(input)
 
   function succeeded(input) { callback(null, {result: true}); }
   function failed(input) { callback(null, {result: false}); }
@@ -95,7 +94,8 @@ baseHandler.post = function(params, callback) {
       function errored(err) { callback(err, null); }
 
       var flows = [
-        {func:aws_bucket.findBucket, success:aws_trail.findTrails, failure:aws_bucket.createBucket, error:errored},
+        {func:aws_bucket.findBucket, success:aws_bucket.getPolicy, failure:aws_bucket.createBucket, error:errored},
+        {func:aws_bucket.getPolicy, success:aws_trail.findTrails, failure:aws_bucket.addPolicy, error:errored},
         {func:aws_bucket.createBucket, success:aws_bucket.addPolicy, failure:failed, error:errored},
         {func:aws_bucket.addPolicy, success:aws_trail.findTrails, failure:failed, error:errored},
         {func:aws_trail.findTrails, success:aws_trail.isLogging, failure:aws_trail.createTrail, error:errored},

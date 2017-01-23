@@ -37,8 +37,7 @@ headers: {
 }
 data:
 {
-  "region": "<<region>>",
-  "account": "<<target_account_num>>"
+  "region": "<<region>>"
 }
 ```
 ### To disable the services
@@ -76,6 +75,7 @@ This API interfaces are using Custom Authorizer and currently, we need to hardco
 ## How To Test Lambda Functions
 
 - $ cd tests
+- Export necessary environment variables and fill the necessary input values
 - $ node test_xxx.js
 
 ## [![Sungard Availability Services | Labs][labs-logo]][labs-github-url]
