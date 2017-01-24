@@ -60,17 +60,11 @@ data:
 
 ## How To Setup a CodePipeline
 
-Please see here, https://github.com/SungardAS/aws-services-federation#how-to-setup-a-codepipeline
+Please see here, https://github.com/SungardAS/aws-services-federation#how-to-setup-a-codepipeline, and add below environment variables in CodeBuild
 
-This API interfaces are using Custom Authorizer and currently, we need to hardcode its Lambda Arn and IAM role for Lambda invocation in swagger.yaml
+  > AWS_AUTHORIZER_LAMBDA_ARN : ARN of Custom Authorizer Lambda Function
 
-  - securityDefinitions - \<\<Custom Authorizer Name\>\> - authorizerCredentials
-
-    > \<\<arn_of_iam_role_to_invoke_lambda\>\>
-
-  - securityDefinitions - \<\<Custom Authorizer Name\>\> - authorizerUri
-
-    > "arn:aws:apigateway:\<\<region\>\>:lambda:path/2015-03-31/functions/\<\<arn_of_custom_authorizer_lambda\>\>/invocations"
+  > AWS_AUTHORIZER_IAM_ROLE_ARN : ARN of IAM Role that enables Custom Authorizer to be invoked
 
 ## How To Test Lambda Functions
 
